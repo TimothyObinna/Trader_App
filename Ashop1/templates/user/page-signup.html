@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    
+{% extends "header2.html" %}
+{% load static %}
+{% load socialaccount %}
+
+{% block content %}
+<body>
+    
+    <!--End header-->
+
+    <main class="main pages">
+        {% include "messages/message.html" %}
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href='{% url "home" %}' rel='nofollow'><i class="fi-rs-home mr-5"></i>Home</a>
+                    {% comment %} <span></span> Pages <span></span> My Account {% endcomment %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="page-content pt-10 pb-40" id="maincontent">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-12 col-md-12 m-auto">
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-8 mx-auto px-auto">
+                                <div class="login_wrap widget-taber-content background-white">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="heading_s1 text-center">
+                                            <!-- <h3 class="mb-5">Welcome, {{request.user.first_name}}</h3><br> -->
+                                            <!-- <h1 class="mb-5">Create an Account</h1> -->
+                                            <h2 class="mb-5">Welcome, <span class="create">signup here to proceed</span></h2><br>
+                                            <p class="mb-30">Already have an account? <a href='{% url "login" %}'>&nbsp;Login</a></p>
+                                        </div>
+                                        
+                                        <div class="alert w-100 mb-2" role="alert" id="message" style="display: none;">   
+                                        </div>
+
+                                        <!-- Signup form -->
+                                        <form method="post" id="form">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <input type="email" name="email" placeholder="Email" style="border: 1px solid black;"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="username" placeholder="Username" style="border: 1px solid black;"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="first_name" placeholder="First name" style="border: 1px solid black;"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="last_name" placeholder="Last name" style="border: 1px solid black;"/>
+                                            </div>
+
+
+                                            <!-- <div class="login_footer form-group">
+                                                <div class="chek-form">
+                                                    <input type="text" name="email" placeholder="Security code *" />
+                                                </div>
+                                                <span class="security-code">
+                                                    <b class="text-new">8</b>
+                                                    <b class="text-hot">6</b>
+                                                    <b class="text-sale">7</b>
+                                                    <b class="text-best">5</b>
+                                                </span>
+                                            </div> -->
+
+
+                                            <!-- <div class="payment_option mb-50">
+                                                <div class="custome-radio">
+                                                    <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios3" checked="" />
+                                                    <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios3" value="customer" />
+                                                    <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse" data-target="#bankTranfer" aria-controls="bankTranfer">I am a customer</label>
+                                                </div>
+                                                <div class="custome-radio">
+                                                    <input class="form-check-input" type="radio" name="is_vendor" id="exampleRadios4" checked="" />
+                                                    <input class="form-check-input" type="radio" name="payment_option" id="exampleRadios4" value="is_vendor" />
+                                                    <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse" data-target="#checkPayment" aria-controls="checkPayment">I am a vendor</label>
+                                                </div>
+                                            </div> -->
+
+                                            
+                                            <!-- <div class="login_footer form-group mb-50">
+                                                <div class="chek-form">
+                                                    <div class="custome-checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
+                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
+                                                    </div>
+                                                </div>
+                                                <a href='page-privacy-policy.html'><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
+                                            </div> -->
+
+                                            <div class="form-group mb-30 text-center mt-30">
+                                                <!-- <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="submit">Submit &amp; Signup</button> -->
+
+                                                <span class="spinner-border text-danger" style="display: none;"  id="spin"></span>
+                                                <button type="submit" 
+                                                    class="btn btn-fill-out btn-block hover-up font-weight-bold"
+                                                    name="submit" id="btnsubmit"><span id="signup">Signup</span>
+                                                </button>
+                                                
+                                            </div>
+                                            <!-- <p class="font-xs text-muted text-center"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p> -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-6 pr-30 d-none d-lg-block ml-4 px-auto">
+                                <div class="card-login mt-155" style="border: 1px solid black;">
+                                    
+                                    <a href="{% provider_login_url 'google' %}" class="social-login google-login px-4" style="border: 1px solid black;">
+                                        <img src="{% static '/imgs/theme/icons/logo-google.svg' %}" alt="" />
+                                        <span>Signup with Google</span>
+                                    </a>
+                                    <a href="#" class="social-login apple-login">
+                                        <!-- <img src="{% static '/imgs/theme/logo.svg' %}" alt="" /> -->
+                                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR</span>
+                                    </a><br>
+                                    <a href="#" class="social-login facebook-login px-3">
+                                        <img src="{% static '/imgs/theme/icons/logo-facebook.svg' %}" alt="" />
+                                        <span>Signup with Facebook</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "footer2.html" %}
+
+</body>
+
+{% endblock content %}
+
+<!-- Mirrored from nest-frontend.netlify.app/page-register by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jan 2024 19:09:22 GMT -->
+</html>

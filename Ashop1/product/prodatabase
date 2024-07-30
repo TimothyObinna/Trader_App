@@ -1,0 +1,28 @@
+Category:
+class name
+category_id
+image
+category name
+
+
+Product:
+product_id
+name
+user
+vendor
+image
+description
+category
+product_details
+price
+old_price
+specification
+product_status
+in_stock
+features
+digital
+sku
+date
+updated
+updated
+expiration

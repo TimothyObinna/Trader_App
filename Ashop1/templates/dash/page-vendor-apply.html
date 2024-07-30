@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+{% extends "header.html" %}
+
+{% load static %}
+
+{% block content %}
+<body>
+    
+    <!--End header-->
+
+    <main class="main pages">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href='{% url "home" %}' rel='nofollow'><i class="fi-rs-home mr-5"></i>Home</a>
+                    {% comment %} <span></span> Pages <span></span> My Account {% endcomment %}
+                </div>
+            </div>
+        </div>
+        {% comment %} {% include "messages/message.html" %} {% endcomment %}
+        <div class="page-content pt-50 pb-50">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-8 mx-auto">
+                                <div class="login_wrap widget-taber-content background-white">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="heading_s1 text-center">
+                                            <h4 class="mb-5">Welcome, {{request.user.first_name}}</h4><br>                                        
+                                            <h2 class="mb-5">Vendor Application Form</h2><br>
+                                        </div>
+                                        <form method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {{ form.as_p }}
+                                            <br>
+                                            <button type="submit" class="btn btn-primary mx-auto d-block">Apply</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "footer2.html" %}
+    <!-- Preloader Start -->
+    
+</body>
+{% endblock content %}
+
+<!-- Mirrored from nest-frontend.netlify.app/page-register by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jan 2024 19:09:22 GMT -->
+</html>

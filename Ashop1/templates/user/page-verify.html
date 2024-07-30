@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    
+{% extends "header2.html" %}
+
+{% load static %}
+
+{% block content %}
+<body>
+    
+    <!--End header-->
+    
+    <main class="main pages">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href='{% url "home" %}' rel='nofollow'><i class="fi-rs-home mr-5"></i>Home</a>
+                </div>
+            </div>
+        </div>
+        {% include "messages/message.html" %}
+        <div class="page-content pt-30 pb-40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                        <div class="row">
+
+                            <div class="col-lg-9 col-md-8 mx-auto">
+                                <div class="login_wrap widget-taber-content background-white">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="heading_s1">            
+                                            <h2 class="mb-5 text-center">VERIFY YOUR EMAIL</h2><br>
+                                            <p class="fs-5 mb-2 text-center">A verification code has been sent to your email address.
+                                            <p class="fs-5 mb-2 text-center">Please check your inbox and enter the verification code below to verify your address.</p>
+                                            <p class="fs-5 mb-2 text-center">The code will expire in 5 mins</p> <br>
+                                        </div>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            
+                                            <div class="form-group">
+                                                <input type="text" required="" name="otp" placeholder="" style="border: 1px solid black;"/>
+                                            </div><br>
+                                            
+                                            {% comment %} <div class="login_footer form-group mb-50">
+                                                <div class="chek-form">
+                                                    <div class="custome-checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
+                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
+                                                    </div>
+                                                </div>
+                                                <a href='page-privacy-policy.html'><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
+                                            </div> {% endcomment %}
+                                            
+                                            <button type="submit" class="btn btn-primary mx-auto d-block">Verify</button>
+
+                                            {% comment %} <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p> {% endcomment %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% comment %} <div class="col-lg-3 pr-30 d-none d-lg-block">
+                                <div class="card-login mt-100" style="border: 0px;">
+                                    <a href="#" class="social-login facebook-login">
+                                        <img src="{% static '/imgs/theme/icons/logo-facebook.svg' %}" alt="" />
+                                        <span>Facebook</span>
+                                    </a>
+                                    <a href="#" class="social-login google-login">
+                                        <img src="{% static '/imgs/theme/icons/logo-google.svg' %}" alt="" />
+                                        <span>Google</span>
+                                    </a>
+                                    <a href="#" class="social-login apple-login">
+                                        <img src="{% static '/imgs/theme/icons/logo-apple.svg' %}" alt="" />
+                                        <span>Apple</span>
+                                    </a>
+                                </div>
+                            </div> {% endcomment %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include "footer2.html" %}
+
+</body>
+
+{% endblock content %}
+
+<!-- Mirrored from nest-frontend.netlify.app/page-register by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 18 Jan 2024 19:09:22 GMT -->
+</html>
